@@ -5,22 +5,26 @@ export default function IssuesPane() {
     const issues = useContext(IssuesContext)
     return (
 
-        <div>
+        <div className="issues-pane">
             {
                 issues.map((issue) => {
+                    const lineArray = issue.line_number.toString().split(",")
+                    const linenum = lineArray[0]
+                    const charnum = lineArray[1]
                     return (
                         <>
-                            <div >
+                            <div className="issue-element">
                                 <div>
-                                    {issue.description}
+                                    Issue: {issue.description}
                                 </div>
                                 <br />
                                 <div>
-                                    {issue.line_number.toString()}
+                                    Found in line {linenum}, character {charnum}
                                 </div>
                             </div>
-                            <br />
-                            <br />
+
+                            <div className="issue-separator"></div>
+
                         </>
                     )
                 })

@@ -10,8 +10,7 @@ import { Issue } from "../types/Issue";
 export default function AccessibilityFixPage() {
 
     const [issues, setIssues] = useState<Issue[]>([])
-
-    let code = "";
+    const [code, setCode] = useState<String>("")
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +27,7 @@ export default function AccessibilityFixPage() {
             .then((res) => res.json())
             .then((data) => {
                 setIssues(data["issues"])
-                code = data["code"]
+                setCode(data["code"])
             })
             .catch((err) => console.log("An error occured: ", err))
     }, [])

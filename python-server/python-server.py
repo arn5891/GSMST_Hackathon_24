@@ -3,6 +3,7 @@ import os
 import requests
 from flask import Flask, request
 from html.parser import HTMLParser
+from flask_cors import CORS, cross_origin
 
 def create_app(test_config=None):
 
@@ -25,6 +26,7 @@ def create_app(test_config=None):
     return app
 
 app = create_app()#define app first
+CORS(app)
 
 @app.route('/api/query', methods = ['POST'])#creates route for app, runs function in route name
 def query():
@@ -52,9 +54,8 @@ class MyHTMLParser(HTMLParser):
         super().feed(data)
 
     def handle_starttag(self, tag, attrs):
-        goodtags = []
         # Convert attrs list of tuples to a dictionary
         if ((tag == "a") or (tag == "img") or (tag == "input") or (tag == "button") and ("aria-label" not in attrs)):
-            self.issues.append({"line_number": self.line_number, "description": "aria-label tag attribute is missing from element"})
+            self.issues.append({"line_number": self.getpos(), "description": "aria-label tag attribute is missing from element <" + tag + ">"})
         # Store the tag and its attributes in the list
         
