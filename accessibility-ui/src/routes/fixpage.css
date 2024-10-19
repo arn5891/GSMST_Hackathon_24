@@ -1,0 +1,28 @@
+.fix-issues-page {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+}
+
+.code-editor {
+    flex-grow: 1;
+}
+
+.separator {
+    width: 1;
+    height: 100%;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    border-left: 1px;
+    box-sizing: border-box;
+}
+
+.issues-pane {
+    width: 40%;
+}
